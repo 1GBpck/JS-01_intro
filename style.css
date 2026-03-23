@@ -1,0 +1,108 @@
+:root {
+    --bg-color: #2c3e50;
+    --card-size: 10vmin;
+    --gap: 2vmin;
+    --card-back-color: #3498db; 
+    --card-face-color: #ecf0f1; 
+    --text-color: #2c3e50;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: white;
+}
+
+.game-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+    perspective: 1000px;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+/* Контейнер карточки */
+.card {
+    width: var(--card-size);
+    height: var(--card-size);
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    border-radius: 8px;
+}
+
+.card.flip {
+    transform: rotateY(180deg);
+    cursor: default;
+}
+
+/* Общие стили для сторон карточки */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    backface-visibility: hidden; /* Скрывает обратную сторону */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    user-select: none;
+}
+
+/* Рубашка (видна изначально) */
+.card-front {
+    background-color: var(--card-back-color);
+    color: white;
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+/* Лицо с цифрой (скрыто изначально) */
+.card-back {
+    background-color: var(--card-face-color);
+    color: var(--text-color);
+    transform: rotateY(180deg); 
+    z-index: 1;
+}
+
+/* Кнопка */
+.restart-btn {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.restart-btn:hover {
+    background-color: #2ecc71;
+}
+
+.hidden {
+    display: none;
+}
