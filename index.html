@@ -11,11 +11,42 @@
     <main class="game-container">
         <h1>Найди пары</h1>
         
-        <div class="game-board" id="gameBoard">
-            <!-- Карточки генерируются здесь -->
+        <!-- Экран настроек (показывается первым) -->
+        <div id="settingsScreen" class="screen active">
+            <div class="settings-form">
+                <label for="boardSize">
+                    Размер поля (чётное число от 2 до 10):
+                </label>
+                <input 
+                    type="number" 
+                    id="boardSize" 
+                    min="2" 
+                    max="10" 
+                    value="4"
+                    step="2"
+                >
+                <button id="startBtn" class="primary-btn">Начать игру</button>
+                <p id="settingsError" class="error-message hidden"></p>
+            </div>
         </div>
 
-        <button id="restartBtn" class="restart-btn hidden">Сыграть ещё раз</button>
+        <!-- Экран игры (скрыт до начала) -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <div class="timer">
+                    Время: <span id="timerDisplay">60</span> сек.
+                </div>
+            </div>
+            
+            <div class="game-board" id="gameBoard"></div>
+
+            <button id="restartBtn" class="restart-btn hidden">Сыграть ещё раз</button>
+            
+            <!-- Сообщение о завершении по времени -->
+            <div id="gameOverMessage" class="game-over-message hidden">
+                ⏰ Время вышло! Попробуйте ещё раз.
+            </div>
+        </div>
     </main>
 
     <script src="script.js"></script>

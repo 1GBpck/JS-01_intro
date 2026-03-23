@@ -2,9 +2,11 @@
     --bg-color: #2c3e50;
     --card-size: 10vmin;
     --gap: 2vmin;
-    --card-back-color: #3498db; 
-    --card-face-color: #ecf0f1; 
+    --card-back-color: #3498db;
+    --card-face-color: #ecf0f1;
     --text-color: #2c3e50;
+    --primary-color: #27ae60;
+    --error-color: #e74c3c;
 }
 
 body {
@@ -21,7 +23,8 @@ body {
 .game-container {
     text-align: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
+    padding: 10px;
 }
 
 h1 {
@@ -29,6 +32,94 @@ h1 {
     font-weight: 300;
 }
 
+/* Экраны (настройки / игра) */
+.screen {
+    display: none;
+}
+.screen.active {
+    display: block;
+}
+
+/* Форма настроек */
+.settings-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.settings-form label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.settings-form input {
+    padding: 10px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.primary-btn, .restart-btn {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.primary-btn:hover, .restart-btn:hover {
+    background-color: #2ecc71;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin: 0;
+}
+.error-message.hidden {
+    display: none;
+}
+
+/* Хедер игры с таймером */
+.game-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.timer {
+    font-size: 1.3rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+.timer.warning {
+    color: #f39c12;
+    animation: pulse 1s infinite;
+}
+
+.timer.danger {
+    color: var(--error-color);
+    animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Игровое поле */
 .game-board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -36,16 +127,17 @@ h1 {
     perspective: 1000px;
     margin: 0 auto;
     width: fit-content;
+    justify-content: center;
 }
 
-/* Контейнер карточки */
+/* Карточка */
 .card {
     width: var(--card-size);
     height: var(--card-size);
     position: relative;
     cursor: pointer;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
+    transition: transform 0.4s;
     border-radius: 8px;
 }
 
@@ -54,7 +146,11 @@ h1 {
     cursor: default;
 }
 
-/* Общие стили для сторон карточки */
+.card.matched {
+    cursor: default;
+    opacity: 0.9;
+}
+
 .card-face {
     position: absolute;
     width: 100%;
@@ -65,12 +161,11 @@ h1 {
     align-items: center;
     font-size: 2rem;
     font-weight: bold;
-    backface-visibility: hidden; /* Скрывает обратную сторону */
+    backface-visibility: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     user-select: none;
 }
 
-/* Рубашка (видна изначально) */
 .card-front {
     background-color: var(--card-back-color);
     color: white;
@@ -78,31 +173,41 @@ h1 {
     z-index: 2;
 }
 
-/* Лицо с цифрой (скрыто изначально) */
 .card-back {
     background-color: var(--card-face-color);
     color: var(--text-color);
-    transform: rotateY(180deg); 
+    transform: rotateY(180deg);
     z-index: 1;
 }
 
-/* Кнопка */
-.restart-btn {
-    margin-top: 30px;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.restart-btn:hover {
-    background-color: #2ecc71;
-}
-
-.hidden {
+/* Кнопка рестарта */
+.restart-btn.hidden {
     display: none;
+}
+
+/* Сообщение о завершении игры */
+.game-over-message {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(231, 76, 60, 0.2);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    color: #ffcccc;
+}
+.game-over-message.hidden {
+    display: none;
+}
+
+/* Адаптив */
+@media (max-width: 500px) {
+    :root {
+        --card-size: 12vmin;
+        --gap: 1.5vmin;
+    }
+    .card-face {
+        font-size: 1.5rem;
+    }
+    .settings-form {
+        padding: 20px;
+    }
 }
