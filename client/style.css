@@ -1,0 +1,231 @@
+/* Базовые настройки */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f5f7fa;
+  color: #2c3e50;
+  line-height: 1.5;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin: 0 0 24px;
+  color: #1a1a2e;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 0 0 16px;
+  color: #16213e;
+}
+
+/* Карточки */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Форма */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e0e6ed;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.error {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Кнопки */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn.primary {
+  background: #4f46e5;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #4338ca;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+}
+
+.btn.small {
+  padding: 6px 12px;
+  font-size: 13px;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.btn.small:hover {
+  background: #e2e8f0;
+}
+
+/* Фильтры */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  align-items: end;
+}
+
+.filters .btn {
+  align-self: center;
+}
+
+/* Таблица */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th {
+  text-align: left;
+  padding: 12px 16px;
+  background: #f8fafc;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 2px solid #e2e8f0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.table th:hover {
+  color: #4f46e5;
+}
+
+.table th.asc,
+.table th.desc {
+  color: #4f46e5;
+}
+
+.table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.table tr:hover {
+  background: #f8fafc;
+}
+
+.empty {
+  text-align: center;
+  padding: 24px;
+  color: #94a3b8;
+}
+
+/* Кнопка удаления */
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* Загрузка */
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+}
+
+/* Тост */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #22c55e;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+  .form-row,
+  .filters {
+    grid-template-columns: 1fr;
+  }
+  .table {
+    font-size: 13px;
+  }
+  .table th,
+  .table td {
+    padding: 10px 12px;
+  }
+}
